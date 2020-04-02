@@ -1,0 +1,95 @@
+{extend name="common:base" /}
+
+{block name="main"}
+<div class="layui-container">
+  <div class="layui-row layui-col-space15">
+    <div class="layui-col-md8">
+      <!--轮播-->
+      <!--<div class="fly-panel layui-hide-xs">-->
+      <!--  <div class="layui-carousel" id="ad_banner">-->
+      <!--    <div carousel-item>-->
+      <!--      <div>条目1</div>-->
+      <!--      <div>条目2</div>-->
+      <!--    </div>-->
+      <!--  </div>-->
+      <!--</div>-->
+      <!--/轮播-->
+
+      <div class="" style="margin-bottom: 0;background: none;">
+        <div class="fly-panel-title fly-filter" style="background: #fff;margin: 0 1px;">
+          <a class="layui-this">文章列表</a>
+
+          <span class="fly-filter-right layui-hide-xs">
+            <a href="" class="layui-this">按最新</a>
+            <span class="fly-mid"></span>
+            <a href="">按热议</a>
+          </span>
+        </div>
+
+        <style>
+
+        </style>
+
+        <ul class="k-list">
+          {foreach $list as $k=>$v}
+          <li>
+            <div class="k-list-header">
+              <h2>
+                <a href="{:url_web('article/detail',['id'=>$v->id])}">{$v->title}</a>
+                <span class="layui-badge layui-bg-red">精帖</span>
+              </h2>
+              <dl class="note">
+                <dd><i class="layui-icon">&#xe66f;</i><cite>程斌</cite></dd>
+                <dd><i class="layui-icon">&#xe637;</i>{:date('Y-m-d',$v->create_time)}</dd>
+                <dd><i class="layui-icon">&#xe610;</i><a href="">PHP</a></dd>
+                <dd><i class="layui-icon">&#xe66e;</i> php linux</dd>
+                <dd><i class="layui-icon" title="阅读量">&#xe770;</i> {$v->clicks}</dd>
+              </dl>
+              <div class="k-hr"></div>
+            </div>
+
+            <div class="k-list-info">
+              <a href="{:url_web('article/detail',['id'=>$v->id])}" class="k-img-thumb layui-anim layui-anim-up">
+                <img src="{$v->img}" alt="{$v->title}" >
+              </a>
+              <a href="{:url_web('article/detail',['id'=>$v->id])}" class="k-list-info-description">{$v->description}</a>
+              <a href="{:url_web('article/detail',['id'=>$v->id])}" class="layui-btn layui-btn-sm k-read-more"><span>阅读详情</span></a>
+            </div>
+
+          </li>
+          {/foreach}
+
+        </ul>
+        <div style="text-align: center;padding: 20px 0;">
+
+            <div class="page">{$list|raw}</div>
+        </div>
+
+      </div>
+    </div>
+
+    {include file="common:sidebar"}
+  </div>
+</div>
+{/block}
+
+
+{block name="script"}
+<script>
+  layui.cache.page = '';
+  layui.cache.user = {
+    username: '游客'
+    ,uid: -1
+    ,avatar: '__IMAGES__/avatar/00.jpg'
+    ,experience: 83
+    ,sex: '男'
+  };
+  layui.config({
+    version: "3.0.0"
+    ,base: '__THEME__/mods/' //这里实际使用时，建议改成绝对路径
+  }).extend({
+    fly: 'index'
+  }).use('fly');
+
+</script>
+{/block}

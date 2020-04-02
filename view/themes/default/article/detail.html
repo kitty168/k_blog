@@ -1,0 +1,97 @@
+{extend name="common:base" /}
+{block name="style"}
+{__block__}
+<link rel="stylesheet" href="__LIB__/highlight/styles/darcula.css">
+{/block}
+
+{block name="main"}
+<div class="layui-container">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8 content detail">
+            <div class="fly-panel detail-box">
+                <h1>{$info->title}</h1>
+
+                <div class="detail-about">
+                    <a class="fly-avatar" href="../user/home.html">
+                        <img src="{$info->img}" alt="18php">
+                    </a>
+                    <div class="fly-detail-user">
+                        <a href="../user/home.html" class="fly-link">
+                            <cite>程斌</cite>
+                            <i class="iconfont icon-renzheng" title="认证信息：{{ rows.user.approve }}"></i>
+                            <i class="layui-badge fly-badge-vip">VIP3</i>
+                        </a>
+                        <span>{:date('Y-m-d',$info->create_time)}</span>
+                    </div>
+                    <div class="detail-hits" id="LAY_jieAdmin" data-id="123">
+                        <span style="padding-right: 10px; color: #FF7200">悬赏：60飞吻</span>
+                        <span class="layui-btn layui-btn-xs jie-admin" type="edit"><a href="">关于作者</a></span>
+                    </div>
+                </div>
+                <div class="detail-body photos">
+                    {$info->details|raw}
+                </div>
+            </div>
+
+            <div class="fly-panel detail-box" id="flyReply">
+                <fieldset class="layui-elem-field layui-field-title" style="text-align: center;">
+                    <legend>回复</legend>
+                </fieldset>
+
+                <ul class="jieda" id="jieda">
+                     <!--无数据时 -->
+                     <li class="fly-none">消灭零回复</li>
+                </ul>
+
+                <div class="layui-form layui-form-pane">
+                    <form action="/jie/reply/" method="post">
+                        <div class="layui-form-item layui-form-text">
+                            <a name="comment"></a>
+                            <div class="layui-input-block">
+                                <textarea id="L_content" name="content" required lay-verify="required" placeholder="请输入内容"  class="layui-textarea fly-editor" style="height: 150px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <input type="hidden" name="jid" value="123">
+                            <button class="layui-btn" lay-filter="*" lay-submit>提交回复</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {include file="common:sidebar" /}
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+
+<script src="__LIB__/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+    layui.cache.page = 'jie';
+    layui.cache.user = {
+        username: '游客'
+        ,uid: -1
+        ,avatar: '__IMAGES__/avatar/00.jpg'
+        ,experience: 83
+        ,sex: '男'
+    };
+    layui.config({
+        version: "3.0.0"
+        ,base: '__THEME__/mods/'
+    }).extend({
+        fly: 'index'
+    }).use(['fly', 'face'], function(){
+        var $ = layui.$
+            ,fly = layui.fly;
+        //如果你是采用模版自带的编辑器，你需要开启以下语句来解析。
+        /*
+        $('.detail-body').each(function(){
+          var othis = $(this), html = othis.html();
+          othis.html(fly.content(html));
+        });
+        */
+    });
+</script>
+{/block}

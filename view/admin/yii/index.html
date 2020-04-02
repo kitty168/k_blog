@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+
+<head>
+    {include file="public:meta"}
+</head>
+<body>
+<div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="">首页</a>
+            <a href="">管理员管理</a>
+            <a>
+              <cite>管理列表</cite></a>
+          </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+</div>
+
+<div class="layui-fluid" >
+    <div class="layui-row">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <label for="model_name" class="layui-form-label">
+                    <span class="x-red">*</span>模型名称
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="model_name" name="model_name" required lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>模型名称(下划线或驼峰,英文)
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="model_description" class="layui-form-label">
+                    <span class="x-red">*</span>模型描述
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="model_description" name="model_description" required lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>模型描述
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label for="" class="layui-form-label">
+                    <span class="x-red">*</span>密码
+                </label>
+                <div class="layui-input-block">
+                    <table class="layui-table">
+                        <thead>
+                        <tr>
+                            <th>字段名</th>
+                            <th>字段描述</th>
+                            <th>字段类型</th>
+                            <th>长度</th>
+                            <th>默认值</th>
+                            <th width="60"><span class="layui-btn layui-btn-sm" id="add_line">增加</span></th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        <tr>
+                            <td><input type="text" class="layui-input" name="col[name][]"></td>
+                            <td><input type="text" class="layui-input" name="col[description][]"></td>
+                            <td><input type="text" class="layui-input" name="col[type][]"></td>
+                            <td><input type="text" class="layui-input" name="col[length][]"></td>
+                            <td><input type="text" class="layui-input" name="col[default][]"></td>
+
+                            <td><span class="layui-btn layui-btn-sm layui-btn-danger delete-line-cur">删除</span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <button class="layui-btn" lay-filter="add" lay-submit>添加</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script id="demo" type="text/html">
+    <tr>
+        <td><input type="text" class="layui-input" name="col[name][]"></td>
+        <td><input type="text" class="layui-input" name="col[description][]"></td>
+        <td><input type="text" class="layui-input" name="col[type][]"></td>
+        <td><input type="text" class="layui-input" name="col[length][]"></td>
+        <td><input type="text" class="layui-input" name="col[default][]"></td>
+
+        <td><span class="layui-btn layui-btn-sm layui-btn-danger delete-line-cur">删除</span></td>
+    </tr>
+</script>
+{include file="public:footer"}
+<script>
+
+    layui.use(['form', 'layer'],
+        function () {
+            var $ = layui.jquery
+                ,form = layui.form
+                ,layer = layui.layer;
+
+            //自定义验证规则
+            form.verify({
+                admin_name: function (value) {
+                    if (value.length < 5) {
+                        return '昵称至少得5个字符啊';
+                    }
+                },
+                pass: [/(.+){6,12}$/, '密码必须6到12位'],
+            });
+
+            //监听提交
+            form.on('submit(add)', function (data) {
+                // console.log(data);
+                //发异步，把数据提交给php
+                $.ajax({
+                    url: "",
+                    type: "POST",
+                    data: data.field,
+                    dataType: "json",
+                    success: function (res) {
+                        if (res.code === 200) {
+                            layer.msg(res.msg, {icon: 6, time: 1000}, function () {
+                                xadmin.close();
+                                xadmin.father_reload();
+                            });
+                        } else {
+                            form.val('loginForm', {'password': ''});
+                            layer.msg(res.msg, {icon: 5, time: 1500});
+                        }
+                    },
+                    error: function (res) {
+                        layer.msg('网络错误');
+                        console.log(res);
+                    }
+                });
+
+                return false;
+            });
+
+            $(document).on('click','#add_line',function(e){
+                var html = $('#demo').html();
+
+                $('#tbody').append(html);
+                form.render();
+            });
+
+            $(document).on('click','.delete-line-cur',function(e){
+                $(this).parents('tr').remove();
+                form.render();
+            });
+
+
+        });</script>
+
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+@charset "utf-8";
+.layui-table td, .layui-table th {
+    min-width: 40px;
+}

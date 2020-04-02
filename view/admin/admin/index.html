@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+<head>
+    {include file="public:meta"}
+</head>
+<body>
+<div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="">首页</a>
+            <a href="">管理员管理</a>
+            <a>
+              <cite>管理列表(数据表格)</cite></a>
+          </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+</div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <form class="layui-form layui-col-space5" lay-filter="formSearch">
+                        <div class="layui-inline layui-show-xs-block">
+                            <input class="layui-input" autocomplete="off" placeholder="开始日" name="s_time" id="s_time">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <input class="layui-input" autocomplete="off" placeholder="截止日" name="e_time" id="e_time">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <input type="text" name="admin_name" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <button class="layui-btn" lay-submit lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-card-body">
+                    <table id="tableList" lay-filter="tableListFilter" class="layui-hide"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!--工具栏模板：-->
+<script type="text/html" id="headerToolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+        <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delAll">批量删除</button>
+    </div>
+</script>
+
+<script type="text/html" id="colToolbar">
+    <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
+</script>
+
+<script type="text/html" id="stateTpl">
+    {{ d.id }}
+</script>
+
+
+{include file="public:footer"}
+<script>
+    layui.use(['laydate', 'form', 'table'], function () {
+        var laydate = layui.laydate
+            ,form = layui.form
+            ,table = layui.table
+        ;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#s_time' //指定元素
+            ,value: new Date()
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#e_time' //指定元素
+            ,value: new Date()
+        });
+
+        // 数据表格渲染
+        var tableList = table.render({
+            elem: '#tableList'
+            // ,width : '100%'
+            // ,height: 'auto'
+            ,cellMinWidth: 40
+            ,toolbar: '#headerToolbar'
+            ,defaultToolbar: ['filter', 'print', 'exports']
+            ,url: "{:url('Admin/getList')}" //数据接口
+            ,where: form.val('formSearch')
+            ,page: true //开启分页
+            ,limit: 10
+            ,limits: [10,20,50,100]
+            ,cols: [[ //表头
+                {type:'checkbox'}
+                ,{field: 'id', title: 'ID', width:60}
+                ,{field: 'admin_name', title: '登录名',width: 160}
+                ,{field: 'mobile', title: '手机', width:120}
+                ,{field: 'email', title: '邮箱', width: 160}
+                ,{field: 'group_name', title: '角色', width:100}
+                ,{field: 'create_time', title: '创建时间', width: 120, sort: true}
+                ,{field: 'state', title: '状态', width: 80, template:'#stateTpl'}
+                ,{field: '', title: '操作', toolbar: '#colToolbar', minWidth:140}
+            ]]
+            ,parseData: function(res) { //res 即为原始返回的数据
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "total": res.data.total, //解析数据长度
+                    "data": res.data.list //解析数据列表
+                }
+            }
+            ,request: {
+                pageName: 'pageNum' //页码的参数名称，默认：page
+                ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+            }
+            ,response: {
+                statusName: 'code' //规定数据状态的字段名称，默认：code
+                ,statusCode: 200 //规定成功的状态码，默认：0
+                ,msgName: 'msg' //规定状态信息的字段名称，默认：msg
+                ,countName: 'total' //规定数据总数的字段名称，默认：count
+                ,dataName: 'data' //规定数据列表的字段名称，默认：data
+            }
+
+        });
+
+        // toobar 监听
+        form.on('submit(search)', function(data){
+            table.reload('tableList',{
+                where: data.field
+            });
+            return false;
+        });
+
+        // 监听checkbox
+        table.on('checkbox(tableListFilter)', function(obj){
+            console.log(obj)
+        });
+
+        //监听行工具事件
+        table.on('toolbar(tableListFilter)', function(obj){
+            var data = obj.data;
+            console.log(obj);
+            if(obj.event === 'add'){
+                common_add("编辑","{:url('Admin/add')}");
+            }
+        });
+
+        //监听行工具事件
+        table.on('tool(tableListFilter)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'edit'){
+                common_edit("编辑","{:url('Admin/edit')}?id="+data.id);
+            }else if(obj.event === 'del'){
+                common_del(obj,"{:url('Admin/delete')}",data.id,'tableList');
+            }
+        });
+
+    });
+
+</script>
+
+</html>

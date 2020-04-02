@@ -1,37 +1,46 @@
-# k_blog
+KCMS 2.0
+===============
 
-#### 介绍
-k-blog个人博客系统
+> 运行环境要求PHP7.1+  
+> 基于ThinkPHP 6.x
 
-#### 软件架构
-软件架构说明
+## 主要功能
 
+* 开箱即用的cms内容管理系统
+* 可作为基本的后台系统的基础框架
+* 封装常用的Model方法
+* 采用传统的mvc模式
+* 权限管理
+* 代码生成器
 
-#### 安装教程
+## 安装
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+下载:
+~~~
+git clone https://gitee.com/kitty_18php/kcms_v2.git kcms
+~~~
 
-#### 使用说明
+安装:
+~~~
+composer install
+~~~
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+## 文档
 
-#### 参与贡献
+[完全开发手册](https://www.kancloud.cn/manual/thinkphp6_0/content)
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+## 技术交流
 
+QQ群：83874609
 
-#### 码云特技
+## 版权信息
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+CMS遵循Apache2开源协议发布，并提供免费使用。
+
+本项目包含的第三方源码和二进制文件之版权信息另行标注。
+
+版权所有Copyright © 2020-2022 by 18PHP (http://www.18php.com)
+
+All rights reserved。
+
+更多细节参阅 [LICENSE.txt](LICENSE.txt)

@@ -1,0 +1,41 @@
+<div class="fly-header layui-bg-cyan">
+    <div class="layui-container">
+        <div class="layui-row">
+            <a class="k-logo" href="/" style="background-image: url(__IMAGES__/logo.png)">
+                程斌博客
+            </a>
+
+            <!--<ul class="layui-nav  layui-input-inline" style="background: #2F4056;">-->
+            <ul class="layui-nav layui-input-inline header-nav layui-hide-xs" style="background: #2F4056;">
+                {foreach $articleCateList as $v}
+                <li class="layui-nav-item "><a href="{:url_web('cate',['id'=>$v->id])}">{$v->cate_name}</a></li>
+                {/foreach}
+            </ul>
+            <ul class="layui-nav fly-right">
+
+                <!--未登入的状态-->
+                <li class="layui-nav-item">
+                    <a href="user/login.html">登入</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="user/reg.html">注册</a>
+                </li>
+                <li class="layui-nav-item layui-hide-xs">
+                    <a href="/app/qq/" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" title="QQ登入"
+                       class="iconfont icon-qq"></a>
+                </li>
+
+                <!-- 登入后的状态 -->
+                <li class="layui-nav-item  layui-hide-md ">
+                    <i class="layui-icon layui-icon-app mobile-icon" style="font-size: 20px"></i>
+                </li>
+            </ul>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+<div class="fly-panel"></div>
