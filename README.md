@@ -15,7 +15,7 @@ k_blog 1.0
 
 下载:
 ~~~
-git clone https://gitee.com/kitty_18php/k_blog.git kcms
+git clone https://gitee.com/kitty_18php/k_blog.git k_blog
 ~~~
 
 安装:
