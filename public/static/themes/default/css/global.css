@@ -531,6 +531,7 @@ pre{padding:0;border: none;}
 .k-list-info-description {color: #666;float: left;padding-left: 15px;width: 75%;height: 90px;box-sizing: border-box;overflow: hidden;line-height: 1.7em;text-align:justify;letter-spacing: 1px;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;/*为行数*/-webkit-box-orient: vertical;}
 .k-read-more{position: absolute;bottom: 0;right: 0}
 
+.k-logo-h1 {display: inline-block;font-size: 12px;}
 .k-logo {display: inline-block;width: 120px;height: 36px;background-size: contain;background-repeat: no-repeat;text-indent: -999px;padding-top: 8px;}
 
 
