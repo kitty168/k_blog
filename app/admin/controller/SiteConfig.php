@@ -44,7 +44,7 @@ class SiteConfig extends Base
     protected function buildParams()
     {
         $data['site_title']      = input('post.site_title/s', '');
-        $data['keyword']         = input('post.keyword/s', '');
+        $data['keywords']        = input('post.keywords/s', '');
         $data['description']     = input('post.description/s', '');
         $data['copyright']       = input('post.copyright/s', '');
         $data['icp']             = input('post.icp/s', '');
