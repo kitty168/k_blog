@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+
+<head>
+    {include file="public:meta"}
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form" layui-filter="formEdit">
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">网站设置</li>
+                    <li>联系方式</li>
+                    <li>SEO优化</li>
+                    <li>邮件服务</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <div class="layui-form-item">
+                            <label for="site_title" class="layui-form-label">
+                                <span class="x-red">*</span>站点名称
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" id="site_title" name="site_title" value="{$info->site_title}" required="" lay-verify="required"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">
+                                <span class="x-red">*</span>LOGO图片
+                            </label>
+                            <div class="layui-input-block layui-upload">
+                                <button type="button" class="layui-btn" id="upload_file">上传图片</button>
+                                <div class="layui-upload-list">
+                                    <img class="layui-upload-img" style="max-width: 200px" src="{$info->logo}">
+                                    <p id="demoText"></p>
+                                </div>
+                                <div class="layui-hide upload-res-input">
+                                    <input type="hidden" name="logo" value="{$info->logo}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label for="copyright" class="layui-form-label">
+                                <span class="x-red">*</span>copyright
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" id="copyright" name="copyright" value="{$info->copyright}" required="" lay-verify="required"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label for="icp" class="layui-form-label">
+                                <span class="x-red">*</span>ICP备案号
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" id="icp" name="icp" value="{$info->icp}" required="" lay-verify="required"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--联系方式-->
+                    <div class="layui-tab-item">
+                        <div class="layui-form-item">
+                            <label for="tel" class="layui-form-label">电话</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="tel" name="tel" value="{$info->tel}" required="" lay-verify="required"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="mobile" class="layui-form-label">手机</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="mobile" name="mobile" value="{$info->mobile}" required="" lay-verify="required"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="fax" class="layui-form-label">传真</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="fax" name="fax" value="{$info->fax}" required="" lay-verify="required"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="email" class="layui-form-label">Email</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="email" name="email" value="{$info->email}" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="address" class="layui-form-label">联系地址</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="address" name="address" value="{$info->address}" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label for="code2" class="layui-form-label">二维码</label>
+                            <div class="layui-input-block">
+                                <textarea name="code2" id="code2" class="layui-textarea" autocomplete="off">{$info->code2}</textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!--SEO优化-->
+                    <div class="layui-tab-item">
+                        <div class="layui-form-item">
+                            <label for="keyword" class="layui-form-label">
+                                <span class="x-red">*</span>SEO关键词
+                            </label>
+                            <div class="layui-input-block">
+                                <textarea name="keyword" id="keyword" class="layui-textarea" autocomplete="off">{$info->keyword}</textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="description" class="layui-form-label">
+                                <span class="x-red">*</span>SEO描述
+                            </label>
+                            <div class="layui-input-block">
+                                <textarea name="description" id="description" class="layui-textarea" autocomplete="off">{$info->description}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label for="script_code" class="layui-form-label">站点统计代码</label>
+                            <div class="layui-input-block">
+                                <textarea name="script_code" id="script_code" class="layui-textarea" autocomplete="off">{$info->script_code}</textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--邮件服务-->
+                    <div class="layui-tab-item">
+                        <div class="layui-form-item">
+                            <label for="smtp_host" class="layui-form-label">
+                                <span class="x-red">*</span>SMTP地址
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" id="smtp_host" name="smtp_host" value="{$info->smtp_host}" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="smtp_port" class="layui-form-label">
+                                <span class="x-red">*</span>SMTP端口
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" id="smtp_port" name="smtp_port" value="{$info->smtp_port}" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="email_account" class="layui-form-label">
+                                <span class="x-red">*</span>发件邮箱账号
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" id="email_account" name="email_account" value="{$info->email_account}" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="email_pwd" class="layui-form-label">
+                                <span class="x-red">*</span>邮箱账号密码
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" id="email_pwd" name="email_pwd" value="{$info->email_pwd}" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="email_recipient" class="layui-form-label">
+                                <span class="x-red">*</span>收件人Email地址
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" id="email_recipient" name="email_recipient" value="{$info->email_recipient}" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <button class="layui-btn" lay-filter="edit" lay-submit style="padding: 0 30px">保存</button>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="public:footer"}
+
+<script>
+
+    layui.use(['form', 'layer', 'upload'], function () {
+        var $ = layui.jquery
+            , form = layui.form
+            , upload = layui.upload
+            , layer = layui.layer
+        ;
+
+        //自定义验证规则
+        form.verify({
+            admin_name: function (value) {
+                if (value.length < 5) {
+                    return '昵称至少得5个字符啊';
+                }
+            },
+            pass: [/(.+){6,12}$/, '密码必须6到12位'],
+        });
+
+        //监听提交
+        form.on('submit(edit)', function (data) {
+            // console.log(data);
+            //发异步，把数据提交给php
+
+            $.ajax({
+                url: "",
+                type: "POST",
+                data: data.field,
+                dataType: "json",
+                success: function (res) {
+                    if (res.code === 200) {
+                        layer.msg(res.msg, {icon: 6, time: 1000}, function () {
+                            layer_close();
+                            location.reload();
+
+                        });
+                    } else {
+                        layer.msg(res.msg, {icon: 5, time: 1500});
+                    }
+                },
+                error: function (res) {
+                    layer.msg('网络错误');
+                    console.log(res);
+                }
+            });
+
+            return false;
+        });
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#upload_file'
+            , url: "{:url('api/upload/upload')}" //改成您自己的上传接口
+            , size: 1024 * 2
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                let item = this.item;
+                obj.preview(function (index, file, result) {
+                    item.parent().find('img').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                console.log(res);
+                let data = res.data;
+                //如果上传失败
+                if (res.code === 200) {
+                    this.item.parent().find('.upload-res-input>input').val(data.path);
+                }
+                return layer.msg(res.msg);
+                //上传成功
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = this.item.parent().find('p');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+
+    });
+
+
+</script>
+
+</body>
+
+</html>
