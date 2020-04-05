@@ -41,7 +41,7 @@
               <dl class="note">
                 <dd><i class="layui-icon">&#xe66f;</i><cite>程斌</cite></dd>
                 <dd><i class="layui-icon">&#xe637;</i>{:date('Y-m-d',$v->create_time)}</dd>
-                <dd><i class="layui-icon">&#xe610;</i><a href="">PHP</a></dd>
+                <dd><i class="layui-icon">&#xe610;</i><a href="{:url_web('cate',['id'=>$v->article_cate_id])}">{$v->article_cate->cate_name}</a></dd>
                 <dd><i class="layui-icon">&#xe66e;</i> php linux</dd>
                 <dd><i class="layui-icon" title="阅读量">&#xe770;</i> {$v->clicks}</dd>
               </dl>

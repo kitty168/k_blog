@@ -68,7 +68,9 @@
                             <td>{$v->description}</td>
                             <td>{$v->author}</td>
                             <td>{:date('Y-m-d H:i:s',$v->create_time)}</td>
-                            <td class="td-status"><span class="layui-btn layui-btn-normal layui-btn-mini {if !$v->state}layui-btn-disabled{/if}">{:config('sys.state')[$v->state]}</span></td>
+                            <td class="td-status">
+                                <input type="checkbox" name="state" lay-skin="switch" {if $v->state}checked{/if} value="1" data-id='{$v->id}' lay-filter="updateState" lay-text="启用|禁用">
+                            </td>
                             <td class="td-manage">
                                 <a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">
                                     <i class="layui-icon">&#xe601;</i>
@@ -110,6 +112,21 @@
         laydate.render({
             elem: '#e_time' //指定元素
         });
+
+        form.on('switch(updateState)',function(data){
+            let state = this.checked ? 1 : 0;
+            let id = $(this).data('id');
+            $.ajax({
+                type: 'post',
+                url: "{:url('Article/updateState')}",
+                data: {id:id,state:state},
+                dataType: "json",
+                success: function(res){
+                    layer.msg(res.msg);
+                }
+            });
+        });
+
     });
 
     function delAll(argument) {

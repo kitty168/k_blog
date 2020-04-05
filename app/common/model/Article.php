@@ -13,5 +13,9 @@ namespace app\common\model;
 
 class Article extends BaseModel
 {
+    public function articleCate()
+    {
+        return $this->belongsTo(ArticleCate::class,'article_cate_id','id');
+    }
 
 }

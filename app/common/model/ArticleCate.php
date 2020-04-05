@@ -13,5 +13,9 @@ namespace app\common\model;
 
 class ArticleCate extends BaseModel
 {
+    public function article()
+    {
+        return $this->hasMany(Article::class,'article_cate_id','id');
+    }
 
 }

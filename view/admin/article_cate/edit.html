@@ -22,8 +22,13 @@
                     <span class="x-red">*</span>描述
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="description" name="description" value="{$info->description}" required="" lay-verify=""
-                           autocomplete="off" class="layui-input">
+                    <input type="text" id="description" name="description" value="{$info->description}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-inline">
+                    <input type="checkbox" name="state" lay-skin="switch" {if $info->state}checked{/if} value="1" lay-filter="switchTest" lay-text="启用|禁用">
                 </div>
             </div>
             <div class="layui-form-item">
