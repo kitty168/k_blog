@@ -68,11 +68,10 @@
                             <td>{$v->description}</td>
                             <td>{$v->author}</td>
                             <td>{:date('Y-m-d H:i:s',$v->create_time)}</td>
-                            <td class="td-status"><span class="layui-btn layui-btn-normal layui-btn-mini {if !$v->state}layui-btn-disabled{/if}">{:config('sys.state')[$v->state]}</span></td>
+                            <td class="td-status">
+                                <input type="checkbox" name="state" lay-skin="switch" {if $v->state}checked{/if} value="1" data-id='{$v->id}' lay-filter="updateState" lay-text="启用|禁用">
+                            </td>
                             <td class="td-manage">
-                                <a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">
-                                    <i class="layui-icon">&#xe601;</i>
-                                </a>
                                 <a title="编辑" onclick="common_open('编辑','{:url('Article/edit',['id'=>$v->id])}')" href="javascript:;">
                                     <i class="layui-icon">&#xe642;</i>
                                 </a>
@@ -100,6 +99,20 @@
     layui.use(['laydate', 'form'], function () {
         var laydate = layui.laydate;
         var form = layui.form;
+
+        form.on('switch(updateState)',function(data){
+            let state = this.checked ? 1 : 0;
+            let id = $(this).data('id');
+            $.ajax({
+                type: 'post',
+                url: "{:url('Article/updateState')}",
+                data: {id:id,state:state},
+                dataType: "json",
+                success: function(res){
+                    layer.msg(res.msg);
+                }
+            });
+        });
 
         //执行一个laydate实例
         laydate.render({

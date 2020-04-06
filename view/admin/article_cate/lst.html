@@ -72,9 +72,6 @@
                                 <input type="checkbox" name="state" lay-skin="switch" {if $v->state}checked{/if} value="1" data-id='{$v->id}' lay-filter="updateState" lay-text="启用|禁用">
                             </td>
                             <td class="td-manage">
-                                <a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">
-                                    <i class="layui-icon">&#xe601;</i>
-                                </a>
                                 <a title="编辑" onclick="common_open('编辑','{:url('ArticleCate/edit',['id'=>$v->id])}','600px','400px')" href="javascript:;">
                                     <i class="layui-icon">&#xe642;</i>
                                 </a>
@@ -118,7 +115,7 @@
             let id = $(this).data('id');
             $.ajax({
                 type: 'post',
-                url: "{:url('Article/updateState')}",
+                url: "{:url('ArticleCate/updateState')}",
                 data: {id:id,state:state},
                 dataType: "json",
                 success: function(res){

@@ -7,7 +7,8 @@ class Index extends Base
 {
     public function index()
     {
-        $list = ArticleModel::getListPage(10);
+        $map[] = ['state','=',1];
+        $list = ArticleModel::getListPage(10,$map);
 
         $this->assign('list',$list);
 

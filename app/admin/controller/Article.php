@@ -17,6 +17,7 @@ use app\facade\ArticleModel;
 
 class Article extends Base
 {
+    protected static $mod = ArticleModel::class;
 
     public function lst()
     {

@@ -15,6 +15,7 @@ use app\facade\ArticleCateModel;
 
 class ArticleCate extends Base
 {
+    protected static $mod = ArticleCateModel::class;
     protected $middleware = [
         'articleCateCache',
     ];

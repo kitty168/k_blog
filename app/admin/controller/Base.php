@@ -2,6 +2,7 @@
 namespace app\admin\controller;
 
 use app\common\controller\BaseController;
+use think\App;
 use think\Db;
 
 class Base extends BaseController
@@ -21,8 +22,9 @@ class Base extends BaseController
         return 'base error:'.$name;
     }
 
-    protected function updateState($mod)
+    public function updateState()
     {
+
         if($this->request->isPost()){
             $id    = input('post.id/d', 0);
             $state = input('post.state/d',0);
@@ -30,7 +32,7 @@ class Base extends BaseController
                 return $this->apiReturn(300,'参数错误');
             }
 
-            $mod::update(['state'=>$state],['id'=>$id]);
+            static::$mod::update(['state'=>$state],['id'=>$id]);
 
             return $this->apiReturn(200,'状态'.config('sys.state')[$state]);
         }

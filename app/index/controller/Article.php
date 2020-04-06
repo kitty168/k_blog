@@ -5,10 +5,11 @@ use app\facade\ArticleModel;
 
 class Article extends Base
 {
-    public function lst($id)
+    public function lst($id=0)
     {
+        $map[] = ['state','=',1];
         $map[] = ['article_cate_id','=',$id];
-        $list = ArticleModel::getListPage(2,$map);
+        $list = ArticleModel::getListPage(10,$map);
 
         $this->assign('list',$list);
 
