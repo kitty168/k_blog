@@ -64,6 +64,12 @@
                     <textarea name="details" id="details">{$info->details|raw}</textarea>
                 </div>
             </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-inline">
+                    <input type="checkbox" name="state" lay-skin="switch" {if $info->state}checked{/if} value="1" lay-filter="switchTest" lay-text="启用|禁用">
+                </div>
+            </div>
 
             <div class="layui-form-item">
                 <label class="layui-form-label"></label>

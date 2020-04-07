@@ -3,10 +3,20 @@
 {block name="main"}
 <div class="layui-container">
   <div class="layui-row layui-col-space15">
+      <div>
+        <span class="layui-breadcrumb">
+            <i class="layui-icon">&#xe715; </i>
+          <a href="/">首页</a>
+          <a href="{:url_web('cate',['id'=>$cateInfo->id])}"><cite>{$cateInfo->cate_name}</cite></a>
+          <a><cite>导航元素</cite></a>
+        </span>
+      </div>
     <div class="layui-col-md8">
 
       <div class="" style="margin-bottom: 0;background: none;">
+
         <div class="fly-panel-title fly-filter" style="background: #fff;margin: 0 1px;">
+
           <a class="layui-this">文章列表</a>
 
           <span class="fly-filter-right layui-hide-xs">
@@ -29,17 +39,17 @@
                 <span class="layui-badge layui-bg-red">精帖</span>
               </h2>
               <dl class="note">
-                <dd>作者：<cite>程斌</cite></dd>
-                <dd>时间：{:date('Y-m-d',$v->create_time)}</dd>
-                <dd>分类：<a href="">PHP</a></dd>
-                <dd>Tag：php linux</dd>
-                <dd><i class="iconfont icon-pinglun1" title="阅读量"></i> {$v->clicks}</dd>
+                <dd><i class="layui-icon">&#xe66f;</i><cite>程斌</cite></dd>
+                <dd><i class="layui-icon">&#xe637;</i>{:date('Y-m-d',$v->create_time)}</dd>
+                <dd><i class="layui-icon">&#xe610;</i><a href="{:url_web('cate',['id'=>$v->article_cate_id])}">{$v->article_cate->cate_name}</a></dd>
+                <dd><i class="layui-icon">&#xe66e;</i> php linux</dd>
+                <dd><i class="layui-icon" title="阅读量">&#xe770;</i> {$v->clicks}</dd>
               </dl>
               <div class="k-hr"></div>
             </div>
 
             <div class="k-list-info">
-              <a href="{:url_web('article/detail',['id'=>$v->id])}" class="k-img-thumb">
+              <a href="{:url_web('article/detail',['id'=>$v->id])}" class="k-img-thumb layui-anim layui-anim-up">
                 <img src="{$v->img}" alt="{$v->title}" >
               </a>
               <a href="{:url_web('article/detail',['id'=>$v->id])}" class="k-list-info-description">{$v->description}</a>

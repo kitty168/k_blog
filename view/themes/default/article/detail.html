@@ -7,28 +7,35 @@
 {block name="main"}
 <div class="layui-container">
     <div class="layui-row layui-col-space15">
+        <div>
+        <span class="layui-breadcrumb">
+            <i class="layui-icon">&#xe715; </i>
+          <a href="/">首页</a>
+          <a href="{:url_web('cate',['id'=>$info->article_cate_id])}">{$info->article_cate->cate_name}</a>
+          <a><cite>{$info->title}</cite></a>
+        </span>
+        </div>
         <div class="layui-col-md8 content detail">
             <div class="fly-panel detail-box">
                 <h1>{$info->title}</h1>
 
                 <div class="detail-about">
-                    <a class="fly-avatar" href="../user/home.html">
+                    <a class="fly-avatar" href="">
                         <img src="{$info->img}" alt="18php">
                     </a>
                     <div class="fly-detail-user">
-                        <a href="../user/home.html" class="fly-link">
-                            <cite>程斌</cite>
-                            <i class="iconfont icon-renzheng" title="认证信息：{{ rows.user.approve }}"></i>
-                            <i class="layui-badge fly-badge-vip">VIP3</i>
+                        <a href="" class="fly-link">
+                            <i class="layui-icon">&#xe66f;</i> <cite>{$info->author}</cite>
                         </a>
-                        <span>{:date('Y-m-d',$info->create_time)}</span>
+                        <span><i class="layui-icon">&#xe637;</i> {:date('Y-m-d',$info->create_time)}</span>
                     </div>
                     <div class="detail-hits" id="LAY_jieAdmin" data-id="123">
-                        <span style="padding-right: 10px; color: #FF7200">悬赏：60飞吻</span>
+                        <span style="padding-right: 10px; color: #FF7200"><i class="layui-icon">&#xe770;</i> 关注：{$info->clicks}</span>
                         <span class="layui-btn layui-btn-xs jie-admin" type="edit"><a href="">关于作者</a></span>
                     </div>
                 </div>
                 <div class="detail-body photos">
+                    <blockquote class="layui-elem-quote" style="color: #666;background: #F8F8F8">{$info->description}</blockquote>
                     {$info->details|raw}
                 </div>
             </div>

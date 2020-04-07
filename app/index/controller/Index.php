@@ -10,6 +10,10 @@ class Index extends Base
         $map[] = ['state','=',1];
         $list = ArticleModel::getListPage(10,$map);
 
+        $seo_title = '首页-';
+
+        $this->assign('seo_title',$seo_title);
+
         $this->assign('list',$list);
 
         return $this->fetch('');
