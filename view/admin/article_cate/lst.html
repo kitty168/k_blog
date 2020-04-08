@@ -72,11 +72,11 @@
                                 <input type="checkbox" name="state" lay-skin="switch" {if $v->state}checked{/if} value="1" data-id='{$v->id}' lay-filter="updateState" lay-text="启用|禁用">
                             </td>
                             <td class="td-manage">
-                                <a title="编辑" onclick="common_open('编辑','{:url('ArticleCate/edit',['id'=>$v->id])}','600px','400px')" href="javascript:;">
-                                    <i class="layui-icon">&#xe642;</i>
+                                <a title="编辑" class="layui-btn layui-btn-xs" onclick="common_open('编辑','{:url('ArticleCate/edit',['id'=>$v->id])}','600px','400px')" href="javascript:;">
+                                    编辑
                                 </a>
-                                <a title="删除" onclick="common_del(this, '{:url('ArticleCate/delete')}','{$v->id}')" href="javascript:;">
-                                    <i class="layui-icon">&#xe640;</i>
+                                <a title="删除" class="layui-btn layui-btn-xs layui-btn-danger" onclick="common_del(this, '{:url('ArticleCate/delete')}','{$v->id}')" href="javascript:;">
+                                    删除
                                 </a>
                             </td>
                         </tr>

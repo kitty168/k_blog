@@ -32,6 +32,27 @@ if (!function_exists('api_json')) {
     }
 }
 
+if(!function_exists('msubstr')){
+    /**
+     * 自定义字符串截取函数
+     * @param $str
+     * @param $start
+     * @param $len
+     * @param string $encoding
+     * @param bool $flag
+     * @return string
+     */
+    function msubstr($str,$start,$len,$encoding='utf-8',$flag=true){
+
+        if(mb_strlen($str, $encoding) > $len){
+            $_str = mb_substr($str, $start, $len, $encoding);
+            return $flag ? $_str.'...' : $_str;
+        }else{
+            return $str;
+        }
+    }
+}
+
 if (!function_exists('url_web')) {
     /**
      * @param string $url
