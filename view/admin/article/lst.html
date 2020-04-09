@@ -38,7 +38,7 @@
                 <div class="layui-card-header">
                     <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除
                     </button>
-                    <button class="layui-btn" onclick="common_open('添加文章分类','{:url('Article/add')}')"><i
+                    <button class="layui-btn" onclick="common_open_full('添加文章','{:url('Article/add')}')"><i
                             class="layui-icon"></i>添加
                     </button>
                 </div>
@@ -72,7 +72,7 @@
                                 <input type="checkbox" name="state" lay-skin="switch" {if $v->state}checked{/if} value="1" data-id='{$v->id}' lay-filter="updateState" lay-text="启用|禁用">
                             </td>
                             <td class="td-manage">
-                                <a title="编辑" class="layui-btn layui-btn-xs" onclick="common_open('编辑','{:url('Article/edit',['id'=>$v->id])}')" href="javascript:;">
+                                <a title="编辑" class="layui-btn layui-btn-xs" onclick="common_open_full('编辑','{:url('Article/edit',['id'=>$v->id])}')" href="javascript:;">
                                     编辑
                                 </a>
                                 <a title="删除" class="layui-btn layui-btn-xs layui-btn-danger" onclick="common_del(this, '{:url('Article/delete')}','{$v->id}')" href="javascript:;">
