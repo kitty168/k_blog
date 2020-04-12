@@ -91,7 +91,9 @@ class Article extends Base
         return $this->fetch();
     }
 
-
+    /**
+     * @return \think\response\Json
+     */
     public function delete()
     {
         if($this->request->isDelete()){
