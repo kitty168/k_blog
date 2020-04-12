@@ -15,7 +15,10 @@ use app\facade\AdminModel;
 
 class Admin extends Base
 {
-
+    /**
+     * @return string
+     * @throws \Exception
+     */
     public function index()
     {
         return $this->fetch();
@@ -34,6 +37,9 @@ class Admin extends Base
         return $this->apiReturn(200,'success',$list);
     }
 
+    /**
+     * @return array
+     */
     protected function buildMap()
     {
         $admin_name = input('get.admin_name/s','');
@@ -48,6 +54,10 @@ class Admin extends Base
         return $map;
     }
 
+    /**
+     * @return string
+     * @throws \Exception
+     */
     public function lst()
     {
         $map = [];
@@ -58,6 +68,10 @@ class Admin extends Base
         return $this->fetch();
     }
 
+    /**
+     * @return string|\think\response\Json
+     * @throws \Exception
+     */
     public function add()
     {
         if($this->request->isPost()){
