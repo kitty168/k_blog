@@ -21,6 +21,10 @@ class Upload extends Base
         return 123;
     }
 
+    /**
+     * 单文件上传
+     * @return \think\response\Json
+     */
     public function upload()
     {
         $validate['file'] = [
