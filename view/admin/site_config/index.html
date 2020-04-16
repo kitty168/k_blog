@@ -5,7 +5,20 @@
     {include file="public:meta"}
 </head>
 <body>
+<div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="">首页</a>
+            <a href="">站点管理</a>
+            <a>
+              <cite>站点配置</cite></a>
+          </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+</div>
+
 <div class="layui-fluid">
+
     <div class="layui-row">
         <form class="layui-form" layui-filter="formEdit">
             <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
@@ -34,7 +47,7 @@
                             </label>
                             <div class="layui-input-block layui-upload">
                                 <button type="button" class="layui-btn upload_file">上传图片</button>
-                                <div class="layui-upload-list">
+                                <div class="layui-upload-list upload-img-pre">
                                     <img class="layui-upload-img" style="max-width: 200px" src="{$info->logo}">
                                     <p class="demoText"></p>
                                 </div>
