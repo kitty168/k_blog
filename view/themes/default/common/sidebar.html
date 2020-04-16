@@ -38,7 +38,7 @@
 
     <dl class="fly-panel fly-list-one">
         <dt class="fly-panel-title">热议文章</dt>
-        {t:articles id="v" field="id,title"}
+        {t:articles id="v" field="id,title,clicks"}
         <dd>
             <a href="{:url_web('article/detail',['id'=>$v->id])}">{$v->title}</a>
             <span><i class="iconfont icon-pinglun1"></i> {$v->clicks}</span>
