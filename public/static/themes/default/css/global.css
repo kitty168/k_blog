@@ -533,6 +533,7 @@ pre{padding:0;border: none;}
 
 .k-logo-h1 {display: inline-block;font-size: 12px;}
 .k-logo {display: inline-block;width: 120px;height: 36px;background-size: contain;background-repeat: no-repeat;text-indent: -999px;padding-top: 8px;}
+.k-concat-info li {padding: 2px 0;}
 
 
 @media screen and (max-width: 768px) {

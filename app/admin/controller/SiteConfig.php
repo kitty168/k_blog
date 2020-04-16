@@ -12,6 +12,7 @@ namespace app\admin\controller;
 
 
 use app\facade\SiteConfigModel;
+use think\facade\Cache;
 
 class SiteConfig extends Base
 {
@@ -27,7 +28,7 @@ class SiteConfig extends Base
             $data = $this->buildParams();
             $data['id'] = $id;
 
-            if(SiteConfigModel::update($data)){
+            if($info = SiteConfigModel::update($data)){
                 return $this->apiReturn(200,'操作成功');
             }
             return $this->apiReturn(300,'操作失败');
@@ -52,6 +53,10 @@ class SiteConfig extends Base
         $data['mobile']          = input('post.mobile/s', '');
         $data['hot_tel']         = input('post.hot_tel/s', '');
         $data['email']           = input('post.email/s', '');
+        $data['qq']              = input('post.qq/s', '');
+        $data['weixin']          = input('post.weixin/s', '');
+        $data['gitee']           = input('post.gitee/s', '');
+        $data['github']          = input('post.github/s', '');
         $data['fax']             = input('post.fax/s', '');
         $data['address']         = input('post.address/s', '');
         $data['logo']            = input('post.logo/s', '');

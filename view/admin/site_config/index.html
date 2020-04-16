@@ -33,10 +33,10 @@
                                 <span class="x-red">*</span>LOGO图片
                             </label>
                             <div class="layui-input-block layui-upload">
-                                <button type="button" class="layui-btn" id="upload_file">上传图片</button>
+                                <button type="button" class="layui-btn upload_file">上传图片</button>
                                 <div class="layui-upload-list">
                                     <img class="layui-upload-img" style="max-width: 200px" src="{$info->logo}">
-                                    <p id="demoText"></p>
+                                    <p class="demoText"></p>
                                 </div>
                                 <div class="layui-hide upload-res-input">
                                     <input type="hidden" name="logo" value="{$info->logo}">
@@ -84,6 +84,30 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
+                            <label for="qq" class="layui-form-label">QQ</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="qq" name="qq" value="{$info->qq}" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="weixin" class="layui-form-label">微信</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="weixin" name="weixin" value="{$info->weixin}" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="gitee" class="layui-form-label">码云</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="gitee" name="gitee" value="{$info->gitee}" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="github" class="layui-form-label">GitHub</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="github" name="github" value="{$info->github}" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
                             <label for="email" class="layui-form-label">Email</label>
                             <div class="layui-input-block">
                                 <input type="text" id="email" name="email" value="{$info->email}" autocomplete="off" class="layui-input">
@@ -97,9 +121,16 @@
                         </div>
 
                         <div class="layui-form-item">
-                            <label for="code2" class="layui-form-label">二维码</label>
-                            <div class="layui-input-block">
-                                <textarea name="code2" id="code2" class="layui-textarea" autocomplete="off">{$info->code2}</textarea>
+                            <label class="layui-form-label">二维码</label>
+                            <div class="layui-input-block layui-upload">
+                                <button type="button" class="layui-btn upload_file">上传图片</button>
+                                <div class="layui-upload-list upload-img-pre">
+                                    <img class="layui-upload-img" style="max-width: 200px" src="{$info->code2}">
+                                    <p class="demoText"></p>
+                                </div>
+                                <div class="layui-hide upload-res-input">
+                                    <input type="hidden" name="code2" value="{$info->code2}">
+                                </div>
                             </div>
                         </div>
 
@@ -242,14 +273,14 @@
 
         //普通图片上传
         var uploadInst = upload.render({
-            elem: '#upload_file'
+            elem: '.upload_file'
             , url: "{:url('api/upload/upload')}" //改成您自己的上传接口
             , size: 1024 * 2
             , before: function (obj) {
                 //预读本地文件示例，不支持ie8
                 let item = this.item;
                 obj.preview(function (index, file, result) {
-                    item.parent().find('img').attr('src', result); //图片链接（base64）
+                    item.siblings('.upload-img-pre').find('img').attr('src', result); //图片链接（base64）
                 });
             }
             , done: function (res) {
@@ -257,14 +288,14 @@
                 let data = res.data;
                 //如果上传失败
                 if (res.code === 200) {
-                    this.item.parent().find('.upload-res-input>input').val(data.path);
+                    this.item.siblings('.upload-res-input').find('input').val(data.path);
                 }
                 return layer.msg(res.msg);
                 //上传成功
             }
             , error: function () {
                 //演示失败状态，并实现重传
-                var demoText = this.item.parent().find('p');
+                var demoText = this.item.siblings('.upload-img-pre').find('p');
                 demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
                 demoText.find('.demo-reload').on('click', function () {
                     uploadInst.upload();
