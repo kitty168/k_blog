@@ -30,7 +30,7 @@ composer install
 
 ## 技术交流
 
-QQ群：83874609 【k_blog】
+QQ群：576599686 【k_blog】
 
 ## 版权信息
 
